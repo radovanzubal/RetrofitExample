@@ -1,0 +1,329 @@
+FORMAT: 1A
+
+# Uloha
+
+reqres is single api for trying simple requests
+## All Users[/api/users?page=2]
+
+### List Users [GET]
+
++ Response 200 (application/json)
+
+        {
+        "page": 2,
+        "per_page": 3,
+        "total": 12,
+        "total_pages": 4,
+        "data": [
+            {
+            "id": 4,
+            "first_name": "Eve",
+            "last_name": "Holt",
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg"
+        },{
+            "id": 5,
+            "first_name": "Charles",
+            "last_name": "Morris",
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg"
+        },{
+            "id": 6,
+            "first_name": "Tracey",
+            "last_name": "Ramos",
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bigmancho/128.jpg"
+        }
+        ]
+        }
+## One User [/api/users/2]
+
+###  Single User [GET]
+        
++ Response 200 (application/json)
+
+        {
+        "data": {
+        "id": 2,
+        "first_name": "Janet",
+        "last_name": "Weaver",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
+        }
+        }
+        
+## One User Not Found [/api/users/23]
+
+###  Single User Not Found [GET]
+
++ Response 404 (application/json)
+
+         {
+         }
+         
+## List Resource [/api/unknown]
+
+###  List Resource [GET]
+
++ Response 200 (application/json)
+
+        {
+        "page": 1,
+        "per_page": 3,
+        "total": 12,
+        "total_pages": 4,
+        "data": [
+        {
+            "id": 1,
+            "name": "cerulean",
+            "year": 2000,
+            "color": "#98B2D1",
+            "pantone_value": "15-4020"
+        },{
+            "id": 2,
+            "name": "fuchsia rose",
+            "year": 2001,
+            "color": "#C74375",
+            "pantone_value": "17-2031"
+        },{
+            "id": 3,
+            "name": "true red",
+            "year": 2002,
+            "color": "#BF1932",
+            "pantone_value": "19-1664"
+        }
+        ]
+        }
+
+## Single Resource [/api/unknown/2]
+
+###  Single Resource [GET]
+
++ Response 200 (application/json)
+
+        {
+        "data": {
+        "id": 2,
+        "name": "fuchsia rose",
+        "year": 2001,
+        "color": "#C74375",
+        "pantone_value": "17-2031"
+        }
+        }
+
+## Single Resource Not Found [/api/unknown/23]
+
+###  Single Resource Not Found [GET]
+
++ Response 404 (application/json)
+
+        {
+        }
+  
+## Single Resource Not Found [/api/users?delay=3]
+
+###  Single Resource Not Found [GET]
+
++ Response 200 (application/json)
+
+        {
+        "page": 1,
+        "per_page": 3,
+        "total": 12,
+        "total_pages": 4,
+        "data": [
+        {
+            "id": 1,
+            "first_name": "George",
+            "last_name": "Bluth",
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"
+        },
+        {
+            "id": 2,
+            "first_name": "Janet",
+            "last_name": "Weaver",
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
+        },
+        {
+            "id": 3,
+            "first_name": "Emma",
+            "last_name": "Wong",
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg"
+        }
+        ]
+        }
+
+### Update user [PUT]
+
+You can update user with Json body as parameter.
+
++ Request (application/json)
+
+        {
+        "name": "morpheus",
+        "job": "zion resident"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /api/users/2
+
+    + Body
+
+            {
+            "name": "morpheus",
+            "job": "zion resident",
+            "updatedAt": "2018-03-27T19:37:25.953Z"
+            }
+
+### Create New User [POST]
+
+You can create new user with Json body as parameter.
+
++ Request (application/json)
+
+        {
+        "name": "morpheus",
+        "job": "leader"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+             {
+            "name": "morpheus",
+            "job": "leader",
+            "id": "347",
+            "createdAt": "2018-03-27T09:31:58.783Z"
+            }
+            
+            
+### Update user [PATCH]
+
+You can update user with Json body as parameter.
+
++ Request (application/json)
+
+        {
+        "name": "morpheus",
+        "job": "zion resident"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /api/users/2
+
+    + Body
+
+            {
+            "name": "morpheus",
+            "job": "zion resident",
+            "updatedAt": "2018-03-27T19:39:15.560Z"
+            }
+            
+### Delete user [DELETE]
+
+You can delete user with Json body as parameter.
+
++ Request (application/json)
+
+        {
+        }
+
++ Response 204 (application/json)
+
+    + Headers
+
+            Location: /api/users/2
+
+## Register Successful [/api/register]
+
+### Register Successful [POST]
+
+You can register user with Json body as parameter.
+
++ Request (application/json)
+
+        {
+        "email": "sydney@fife",
+        "password": "pistol"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /api/register
+
+    + Body
+
+            {
+            "token": "QpwL5tke4Pnpja7X"
+            }
+            
++ Request (application/json)
+
+        {
+        "email": "sydney@fife"
+        }
+
++ Response 400 (application/json)
+
+    + Headers
+
+            Location: /api/register
+
+    + Body
+
+            {
+            "error": "Missing password"
+            }
+
+
+## Login Successful [/api/login]
+            
+### Login Successful [POST]
+
+Successful login.
+
++ Request (application/json)
+
+        {
+        "email": "peter@klaven",
+        "password": "cityslicka"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /api/login
+
+    + Body
+
+            {
+            "token": "QpwL5tke4Pnpja7X"
+            }
+                
++ Request (application/json)
+
+        {
+        "email": "peter@klaven"
+        }
+
++ Response 400 (application/json)
+
+    + Headers
+
+            Location: /api/login
+
+    + Body
+
+            {
+            "error": "Missing password"
+            }
